@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<GridPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AjoutEmployeController"
+          hgap="10" vgap="10" alignment="CENTER">
+    <!-- Ligne 1 -->
+    <TextField fx:id="firstNameField" promptText="Nom" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+    <TextField fx:id="lastNameField" promptText="Prénom" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+    <TextField fx:id="emailField" promptText="Email" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+
+    <!-- Ligne 2 -->
+    <TextField fx:id="departmentField" promptText="Département" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+    <TextField fx:id="positionField" promptText="Poste" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+    <TextField fx:id="statusField" promptText="Status" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+
+    <!-- Ligne 3 -->
+    <DatePicker fx:id="hireDateField" promptText="Date d'embauche" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+    <TextField fx:id="addressField" promptText="Adresse" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+    <TextField fx:id="phoneField" promptText="Téléphone" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+
+    <!-- Bouton -->
+    <Button fx:id="saveButton" text="Ajouter" onAction="#addEmploye" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+</GridPane>

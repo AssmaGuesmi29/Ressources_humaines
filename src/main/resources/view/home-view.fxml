@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/22.0.1" fx:controller="controller.HomeViewController">
+    <children>
+        <VBox spacing="20" alignment="CENTER" layoutX="50" layoutY="50" prefWidth="600" prefHeight="600">
+            <!-- Gestion des Employés -->
+            <Button text="Gestion des Employés" fx:id="gestionEmployesButton" mnemonicParsing="false" maxWidth="500" onAction="#goToEmployeView">
+                <graphic>
+                    <ImageView fitHeight="50" fitWidth="50">
+                        <image>
+                            <Image preserveRatio="true" requestedHeight="190" requestedWidth="190" smooth="true" url="@../images/Employees.png" />
+                        </image>
+                    </ImageView>
+                </graphic>
+            </Button>
+
+            <!-- Suivi des Congés et Absences -->
+            <Button text="Suivi des Congés et Absences" mnemonicParsing="false" maxWidth="500">
+                <graphic>
+                    <ImageView fitHeight="50" fitWidth="50">
+                        <image>
+                            <Image preserveRatio="true" requestedHeight="190" requestedWidth="190" smooth="true" url="@../images/leaves.png" />
+                        </image>
+                    </ImageView>
+                </graphic>
+            </Button>
+
+            <!-- Gestion de la Paie -->
+            <Button text="Gestion de la Paie" mnemonicParsing="false" maxWidth="500">
+                <graphic>
+                    <ImageView fitHeight="50" fitWidth="50">
+                        <image>
+                            <Image preserveRatio="true" requestedHeight="190" requestedWidth="190" smooth="true" url="@../images/salary-2.png" />
+                        </image>
+                    </ImageView>
+                </graphic>
+            </Button>
+
+            <!-- Évaluations de Performance -->
+            <Button text="Évaluations de Performance" mnemonicParsing="false" maxWidth="500">
+                <graphic>
+                    <ImageView fitHeight="50" fitWidth="50">
+                        <image>
+                            <Image preserveRatio="true" requestedHeight="190" requestedWidth="190" smooth="true" url="@../images/social-credit-system.png" />
+                        </image>
+                    </ImageView>
+                </graphic>
+            </Button>
+
+            <!-- Gestion des Formations -->
+            <Button text="Gestion des Formations" mnemonicParsing="false" maxWidth="500">
+                <graphic>
+                    <ImageView fitHeight="50" fitWidth="50">
+                        <image>
+                            <Image preserveRatio="true" requestedHeight="190" requestedWidth="190" smooth="true" url="@../images/business.png" />
+                        </image>
+                    </ImageView>
+                </graphic>
+            </Button>
+
+            <!-- Rapports et Statistiques RH -->
+            <Button text="Rapports et Statistiques RH" mnemonicParsing="false" maxWidth="500">
+                <graphic>
+                    <ImageView fitHeight="50" fitWidth="50">
+                        <image>
+                            <Image preserveRatio="true" requestedHeight="190" requestedWidth="190" smooth="true" url="@../images/analytics.png" />
+                        </image>
+                    </ImageView>
+                </graphic>
+            </Button>
+        </VBox>
+    </children>
+</AnchorPane>

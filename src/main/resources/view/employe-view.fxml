@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import com.mysql.cj.result.ValueFactory?>
+<?import javafx.util.Callback?>
+<VBox xmlns="http://javafx.com/javafx/11.0.1"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="controller.EmployeController">
+
+    <!-- Search Field -->
+    <TextField fx:id="searchField" promptText="Rechercher un employé" />
+
+    <!-- Add Employee Button -->
+    <Button fx:id="addButton" text="Ajouter un employé" onAction="#addEmploye" />
+
+    <!-- TableView to display employees -->
+    <TableView fx:id="employeTable" prefHeight="600" prefWidth="1000">
+        <columns>
+            <!-- Column for Employee ID -->
+            <TableColumn fx:id="id" text="ID" />
+            <TableColumn fx:id="firstName" text="Nom" />
+            <TableColumn fx:id="lastName" text="Prénom" />
+            <TableColumn fx:id="email" text="Email" />
+            <TableColumn fx:id="department" text="Département" />
+            <TableColumn fx:id="positionColumn" text="Poste" />
+            <TableColumn fx:id="actionsColumn" text="Actions" />
+
+
+        </columns>
+    </TableView>
+</VBox>

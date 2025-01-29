@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/11.0.1"
+      xmlns:fx="http://javafx.com/fxml/1" spacing="5"
+      fx:controller="controller.EmployeController">
+  <VBox xmlns="http://javafx.com/javafx/11.0.1"
+        xmlns:fx="http://javafx.com/fxml/1"
+        spacing="5" alignment="CENTER_LEFT">
+  <TextField fx:id="searchField" HBox.hgrow="ALWAYS" styleClass="search-field" promptText="Rechercher un employé" />
+  <Button fx:id="addButton" text="Ajouter un employé" onAction="#addEmploye" />
+  </VBox>
+  <TableView fx:id="employeTable">
+    <columns>
+      <TableColumn text="ID" />
+      <TableColumn text="Nom" />
+      <TableColumn text="Poste" />
+      <TableColumn text="Département" />
+      <TableColumn text="Date Embauche" />
+    </columns>
+  </TableView>
+</VBox>
