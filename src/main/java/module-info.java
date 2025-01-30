@@ -4,9 +4,7 @@ module com.example.ressource_humaines {
     requires javafx.graphics;
     requires java.sql;
     requires java.desktop;
-
     opens com.example.ressource_humaines to javafx.fxml;  // This is fine if your main app needs reflection
-
     opens controller to javafx.fxml;  // THIS is the missing line you need
     opens Model to javafx.base;
     exports Model;
