@@ -4,21 +4,31 @@
 <?import javafx.scene.layout.*?>
 
 <VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="controller.EmployeeController" spacing="10" style="-fx-background-color: #2196F3; -fx-padding: 20px;">
+      fx:controller="controller.EmployeeController" spacing="10"
+      style=" -fx-padding: 20px;">
 
-    <TableView fx:id="employeeTable">
-        <columns>
-            <TableColumn text="First Name" />
-            <TableColumn text="Last Name" />
-            <TableColumn text="Email" />
-            <TableColumn text="Position" />
-            <TableColumn text="Departement" />
-            <TableColumn text="hireDate" />
-            <TableColumn text="phone" />
-            <TableColumn text="address" />
-            <TableColumn text="status" />
-        </columns>
+    <Label text="Employees
+    Summary" styleClass="title-label" />
+
+    <HBox spacing="10" alignment="CENTER">
+        <TextField fx:id="searchField" promptText="Search by name..." />
+        <ComboBox fx:id="filterComboBox" promptText="Filter by department" />
+        <Button fx:id="searchButton" text="Search"  />
+        <Button fx:id="resetButton" text="Reset"  />
+    </HBox>
+
+    <TableView fx:id="employeeTable" styleClass="centered-table">
+        <TableColumn text="First Name" fx:id="firstNameColumn" />
+        <TableColumn text="Last Name" fx:id="lastNameColumn" />
+        <TableColumn text="Email" fx:id="emailColumn" />
+        <TableColumn text="Position" fx:id="positionColumn" />
+        <TableColumn text="Department" fx:id="departmentColumn" />
+        <TableColumn text="Hire Date" fx:id="hireDateColumn" />
+        <TableColumn text="Phone" fx:id="phoneColumn" />
+        <TableColumn text="Address" fx:id="addressColumn" />
+        <TableColumn text="Status" fx:id="statusColumn" />
     </TableView>
+    <Label text="Want to add an Employee?" styleClass="title-label" />
 
     <TextField fx:id="firstNameField" promptText="First Name"/>
     <TextField fx:id="lastNameField" promptText="Last Name"/>
@@ -30,11 +40,11 @@
     <TextField fx:id="addressField" promptText="address"/>
     <TextField fx:id="statusField" promptText="status"/>
 
-
-
-    <Button fx:id="addButton" text="Add Employee" onAction="#handleAddEmployee"/>
-    <Button fx:id="deleteButton" text="Delete Employee" onAction="#handleDeleteEmployee"/>
-    <Button fx:id="EditButton" text="Edit Employee" />
+    <HBox spacing="10" alignment="CENTER">
+        <Button fx:id="addButton" text="Add Employee" onAction="#handleAddEmployee"/>
+        <Button fx:id="deleteButton" text="Delete Employee" onAction="#handleDeleteEmployee"/>
+        <Button fx:id="editButton" text="Edit Employee" onAction="#handleEditEmployee"/>
+    </HBox>
 
 
 

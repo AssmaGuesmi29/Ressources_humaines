@@ -34,7 +34,7 @@ public class EmployeeController {
     public void initialize() {
         employeeList.addAll(employeeService.getAllEmployees());
         employeeTable.setItems(employeeList);
-        employeeTable.getSelectionModel().setSelectionMode(SelectionMode.SINGLE); // Permet de sélectionner une seule ligne
+        employeeTable.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 
 
         TableColumn<Employee, String> firstNameColumn = new TableColumn<>("First Name");
@@ -68,11 +68,14 @@ public class EmployeeController {
                 departmentColumn, hireDateColumn, phoneColumn, addressColumn, statusColumn);
     }
 
+
+
     @FXML
     public void handleAddEmployee() {
         Employee employee = new Employee(0, firstNameField.getText(), lastNameField.getText(), positionField.getText(), departementField.getText(), hireDateField.getText(), statusField.getText(), emailField.getText(), phoneField.getText(), addressField.getText());
         employeeService.addEmployee(employee);
         employeeList.add(employee);
+        clearFields();
     }
     @FXML
     public void handleDeleteEmployee() {
@@ -90,7 +93,65 @@ public class EmployeeController {
         }
     }
 
+    @FXML
+    public void handleEditEmployee() {
+        Employee selectedEmployee = employeeTable.getSelectionModel().getSelectedItem();
+        if (selectedEmployee != null) {
+            // Remplir les champs de texte avec les informations de l'employé sélectionné
+            firstNameField.setText(selectedEmployee.getFirstName());
+            lastNameField.setText(selectedEmployee.getLastName());
+            emailField.setText(selectedEmployee.getEmail());
+            positionField.setText(selectedEmployee.getPosition());
+            departementField.setText(selectedEmployee.getDepartment());
+            hireDateField.setText(selectedEmployee.getHireDate());
+            phoneField.setText(selectedEmployee.getPhone());
+            addressField.setText(selectedEmployee.getAddress());
+            statusField.setText(selectedEmployee.getStatus());
 
+            addButton.setText("Update");
+            addButton.setOnAction(event -> handleUpdateEmployee(selectedEmployee));
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Selection Error");
+            alert.setHeaderText("No employee selected");
+            alert.setContentText("Please select an employee to edit.");
+            alert.showAndWait();
+        }
+    }
+
+    @FXML
+    public void handleUpdateEmployee(Employee employee) {
+        employee.setFirstName(firstNameField.getText());
+        employee.setLastName(lastNameField.getText());
+        employee.setEmail(emailField.getText());
+        employee.setPosition(positionField.getText());
+        employee.setDepartment(departementField.getText());
+        employee.setHireDate(hireDateField.getText());
+        employee.setPhone(phoneField.getText());
+        employee.setAddress(addressField.getText());
+        employee.setStatus(statusField.getText());
+
+        employeeService.updateEmployee(employee);
+
+        employeeTable.refresh();
+
+        addButton.setText("Add Employee");
+        addButton.setOnAction(event -> handleAddEmployee());
+
+        clearFields();
+    }
+
+    private void clearFields() {
+        firstNameField.clear();
+        lastNameField.clear();
+        emailField.clear();
+        positionField.clear();
+        departementField.clear();
+        hireDateField.clear();
+        phoneField.clear();
+        addressField.clear();
+        statusField.clear();
+    }
 
 
 

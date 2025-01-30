@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Pos?>
+
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="controller.LeaveController" spacing="10" style="-fx-padding: 20px;"
+      alignment="CENTER">
+
+    <!-- Titre -->
+    <Label text="Gestion des Congés et Absences" styleClass="title-label" />
+
+    <!-- TableView pour afficher les demandes de congés -->
+    <TableView fx:id="leaveTable" styleClass="centered-table">
+        <columns>
+            <TableColumn text="Nom de l'employé" fx:id="employeeNameColumn" />
+            <TableColumn text="Depuis" fx:id="startDateColumn" />
+            <TableColumn text="À" fx:id="endDateColumn" />
+            <TableColumn text="Durée (Jours)" fx:id="durationColumn" />
+            <TableColumn text="Approbateur" fx:id="approverColumn" />
+            <TableColumn text="Statut" fx:id="statusColumn" />
+        </columns>
+    </TableView>
+
+    <!-- Conteneur pour les boutons -->
+    <HBox spacing="10" alignment="CENTER">
+        <Button fx:id="submitButton" text="Soumettre une demande" onAction="#handleSubmitLeaveRequest" />
+        <Button fx:id="approveButton" text="Approuver la demande" onAction="#handleApproveLeaveRequest" />
+        <Button fx:id="takeLeaveButton" text="Prendre un congé" onAction="#handleTakeLeave" />
+
+    </HBox>
+</VBox>

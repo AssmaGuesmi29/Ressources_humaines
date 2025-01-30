@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Pos?>
+<?import javafx.scene.text.*?>
+
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="controller.TakeLeaveController" spacing="10" style="-fx-padding: 20px;"
+       alignment="CENTER">
+
+    <Label text="Ajoutez un congé" styleClass="title-label" />
+    <!-- Sélection de l'employé -->
+    <Label text="Sélectionnez l'employé:" />
+    <ComboBox fx:id="employeeComboBox" promptText="Choisir un employé" />
+    <!-- Sélection des dates -->
+    <Label text="Date: select the desired days off" />
+    <DatePicker fx:id="startDatePicker" promptText="Start Date" />
+    <DatePicker fx:id="endDatePicker" promptText="End Date" />
+
+    <CheckBox fx:id="halfDayStart" text="Demi-journée au début" />
+    <CheckBox fx:id="halfDayEnd" text="Demi-journée à la fin" />
+
+    <HBox spacing="10" alignment="CENTER">
+        <Button fx:id="addLeaveButton" text="Ajouter le congé" onAction="#handleAddLeave" />
+        <Button fx:id="cancelButton" text="Annuler" onAction="#handleCancel" />
+    </HBox>
+</VBox>
