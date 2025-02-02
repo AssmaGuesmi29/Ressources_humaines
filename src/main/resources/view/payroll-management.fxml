@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="controller.PayrollController" spacing="10" style="-fx-padding: 20px;"
+      alignment="CENTER">
+
+    <Label text="Gestion de la Paie" styleClass="title-label" />
+
+    <TableView fx:id="payrollTable" styleClass="centered-table" prefWidth="750">
+        <columns>
+            <TableColumn text="Nom de l'Employé" fx:id="employeeNameColumn" prefWidth="200"/>
+            <TableColumn text="Salaire Brut" fx:id="grossSalaryColumn" prefWidth="150"/>
+            <TableColumn text="Salaire Net" fx:id="netSalaryColumn" prefWidth="150"/>
+            <TableColumn text="Prime" fx:id="bonusColumn" prefWidth="150"/>
+            <TableColumn text="Retenues" fx:id="deductionsColumn" prefWidth="150"/>
+        </columns>
+    </TableView>
+
+    <Button text="Générer le Bulletin de Paie" onAction="#handleGeneratePayslip" />
+</VBox>

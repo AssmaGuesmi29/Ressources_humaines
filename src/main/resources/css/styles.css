@@ -1,7 +1,7 @@
 
 .root {
-    -fx-padding: 10px 20px; /* Padding around the text */
-    -fx-background-color: white; /* Light gray background for the root */
+    -fx-padding: 10px 20px;
+    -fx-background-color: white;
 }
 .search-field {
     -fx-background-color: white;
@@ -47,14 +47,13 @@
     -fx-padding: 10px 0;
 }
 
-/* Style pour les TextField centrés */
 .centered-text-field {
     -fx-background-color: #ffffff;
     -fx-border-color: #cccccc;
     -fx-border-radius: 5px;
     -fx-padding: 5px;
     -fx-font-size: 14px;
-    -fx-pref-width: 100px; /* Largeur réduite */
+    -fx-pref-width: 400px;
     -fx-alignment: CENTER;
 }
 
@@ -86,12 +85,15 @@
     -fx-background-color: #0D47A1;
 }
 
-/* Style pour la TableView centrée */
 .centered-table {
     -fx-background-color: #ffffff;
     -fx-border-color: #cccccc;
-    -fx-border-radius: 5px;
+    -fx-border-radius: 2px;
     -fx-alignment: CENTER;
+    -fx-pref-width: 750px;
+    -fx-max-width: 750px;
+
+
 }
 
 .centered-table .column-header-background {
@@ -109,7 +111,7 @@
 .centered-table .table-row-cell {
     -fx-background-color: #ffffff;
     -fx-border-color: #cccccc;
-    -fx-font-size: 14px;
+    -fx-font-size: 10px;
 }
 
 .centered-table .table-row-cell:odd {

@@ -23,6 +23,8 @@ public class EmployeeService {
                 "email VARCHAR(255), " +
                 "phone VARCHAR(255), " +
                 "address TEXT" +
+                "baseSalary DECIMAL(10, 2)" +
+
                 ")";
 
         try (Connection conn = DatabaseConnection.getConnection();
@@ -62,6 +64,8 @@ public class EmployeeService {
             stmt.setString(7, employee.getEmail());
             stmt.setString(8, employee.getPhone());
             stmt.setString(9, employee.getAddress());
+            stmt.setBigDecimal(10, employee.getBaseSalary());
+
 
             stmt.executeUpdate();
 
@@ -112,7 +116,10 @@ public class EmployeeService {
                         rs.getString("status"),
                         rs.getString("email"),
                         rs.getString("phone"),
-                        rs.getString("address")
+                        rs.getString("address"),
+                        rs.getBigDecimal("baseSalary")
+
+
                 ));
             }
         } catch (SQLException e) {
@@ -121,6 +128,41 @@ public class EmployeeService {
         return employees;
 
     }
+
+    public Employee getEmployeeById(int id) {
+        Employee employee = null;
+        String sql = "SELECT * FROM employees WHERE id = ?";
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, id); // Paramétrer l'ID de l'employé à récupérer
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                // Si un employé avec cet ID est trouvé, créer un objet Employee
+                employee = new Employee(
+                        rs.getInt("id"),
+                        rs.getString("firstName"),
+                        rs.getString("lastName"),
+                        rs.getString("position"),
+                        rs.getString("department"),
+                        rs.getString("hireDate"),
+                        rs.getString("status"),
+                        rs.getString("email"),
+                        rs.getString("phone"),
+                        rs.getString("address"),
+                        rs.getBigDecimal("baseSalary")
+
+                );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return employee; // Retourner l'objet Employee trouvé, ou null si aucun employé n'est trouvé
+    }
+
 
     public void updateEmployee(Employee employee) {
         String sql = "UPDATE employees SET firstName = ?, lastName = ?, position = ?, department = ?, hireDate = ?, status = ?, email = ?, phone = ?, address = ? WHERE id = ?";

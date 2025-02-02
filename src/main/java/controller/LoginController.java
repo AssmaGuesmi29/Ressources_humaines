@@ -37,7 +37,6 @@ public class LoginController {
         }
     }
 
-    // Méthode simulée pour vérifier si la connexion est réussie
     private boolean isLoginSuccessful(String email, String password) {
         // Remplacez cette logique par une vérification réelle
         return "admin@test.com".equals(email) && "password".equals(password);

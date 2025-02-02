@@ -1,5 +1,7 @@
 package Model;
 
+import java.math.BigDecimal;
+
 public class Employee {
     private int id;
     private String firstName;
@@ -11,9 +13,10 @@ public class Employee {
     private String email;
     private String phone;
     private String address;
+    private BigDecimal baseSalary;
 
     public Employee(int id, String firstName, String lastName, String position, String department,
-                    String hireDate, String status, String email, String phone, String address) {
+                    String hireDate, String status, String email, String phone, String address,BigDecimal baseSalary) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -24,6 +27,8 @@ public class Employee {
         this.email = email;
         this.phone = phone;
         this.address = address;
+        this.baseSalary = baseSalary;
+
     }
 
     // Getters & Setters
@@ -47,4 +52,6 @@ public class Employee {
     public void setPhone(String phone) { this.phone = phone; }
     public String getAddress() { return address; }
     public void setAddress(String address) { this.address = address; }
+    public BigDecimal getBaseSalary() { return baseSalary; }
+    public void setBaseSalary(BigDecimal baseSalary) { this.baseSalary = baseSalary; }
 }

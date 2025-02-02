@@ -39,6 +39,7 @@
     <TextField fx:id="phoneField" promptText="Phone"/>
     <TextField fx:id="addressField" promptText="address"/>
     <TextField fx:id="statusField" promptText="status"/>
+    <TextField fx:id="baseSalaryField" promptText="Salaire de base"/>
 
     <HBox spacing="10" alignment="CENTER">
         <Button fx:id="addButton" text="Add Employee" onAction="#handleAddEmployee"/>
