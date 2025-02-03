@@ -28,23 +28,30 @@
         <TableColumn text="Address" fx:id="addressColumn" />
         <TableColumn text="Status" fx:id="statusColumn" />
     </TableView>
-    <Label text="Want to add an Employee?" styleClass="title-label" />
-
-    <TextField fx:id="firstNameField" promptText="First Name"/>
-    <TextField fx:id="lastNameField" promptText="Last Name"/>
-    <TextField fx:id="emailField" promptText="Email"/>
-    <TextField fx:id="positionField" promptText="Position"/>
-    <TextField fx:id="departementField" promptText="Departement"/>
-    <TextField fx:id="hireDateField" promptText="hireDate"/>
-    <TextField fx:id="phoneField" promptText="Phone"/>
-    <TextField fx:id="addressField" promptText="address"/>
-    <TextField fx:id="statusField" promptText="status"/>
-
     <HBox spacing="10" alignment="CENTER">
-        <Button fx:id="addButton" text="Add Employee" onAction="#handleAddEmployee"/>
         <Button fx:id="deleteButton" text="Delete Employee" onAction="#handleDeleteEmployee"/>
         <Button fx:id="editButton" text="Edit Employee" onAction="#handleEditEmployee"/>
     </HBox>
+    <Label text="Want to add an Employee?" styleClass="title-label" />
+    <GridPane xmlns:fx="http://javafx.com/fxml/1" hgap="10" vgap="10" alignment="CENTER">
+        <!-- Ligne 1 -->
+        <TextField fx:id="firstNameField" promptText="First Name" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <TextField fx:id="lastNameField" promptText="Last Name" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+        <TextField fx:id="emailField" promptText="Email" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+
+        <!-- Ligne 2 -->
+        <TextField fx:id="positionField" promptText="Position" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <TextField fx:id="departementField" promptText="Departement" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+        <TextField fx:id="hireDateField" promptText="hireDate" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+
+        <!-- Ligne 3 -->
+        <TextField fx:id="phoneField" promptText="Phone" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+        <TextField fx:id="addressField" promptText="address" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+        <TextField fx:id="statusField" promptText="status" GridPane.rowIndex="2" GridPane.columnIndex="2"/>
+
+        <!-- Ligne 4 -->
+        <Button fx:id="addButton" text="Add Employee" onAction="#handleAddEmployee" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+    </GridPane>
 
 
 

@@ -49,7 +49,7 @@ public class LoginController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/home-view.fxml"));
             Parent root = loader.load();
-            Stage stage = (Stage) emailField.getScene().getWindow(); // Récupère la fenêtre actuelle
+            Stage stage = (Stage) emailField.getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.setTitle("Page d'accueil");
             stage.show();

@@ -1,5 +1,7 @@
 module com.example.ressource_humaines {
-    requires javafx.controls;
+    requires javafx
+
+    .controls;
     requires javafx.fxml;
     requires javafx.graphics;
     requires java.sql;

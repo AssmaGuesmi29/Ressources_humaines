@@ -68,7 +68,7 @@ public class HomeViewController {
     public void goToEmployeView(javafx.event.ActionEvent actionEvent) {
         try {
             // Charger le fichier FXML de l'interface employe-view.fxml
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/employe-view.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/view-employee.fxml"));
             Parent employeView = loader.load();
 
             // Créer une nouvelle scène pour afficher employe-view.fxml

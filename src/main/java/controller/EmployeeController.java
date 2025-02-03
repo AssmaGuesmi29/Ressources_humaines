@@ -19,6 +19,8 @@ public class EmployeeController {
     @FXML private TextField departementField;
     @FXML private TextField statusField;
 
+    @FXML
+    private TextField searchField;
 
 
     @FXML private Button addButton;

@@ -63,7 +63,7 @@ public class EmployeeService {
             stmt.setString(8, employee.getPhone());
             stmt.setString(9, employee.getAddress());
 
-            stmt.executeUpdate();
+            int i = stmt.executeUpdate();
 
             try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
                 if (generatedKeys.next()) {
@@ -81,9 +81,23 @@ public class EmployeeService {
         if (parts.length != 3) {
             throw new IllegalArgumentException("Invalid date format");
         }
-        String day = parts[0];
-        String month = parts[1];
-        String year = parts[2];
+
+        String day, month, year;
+
+        // Check if the input is in yyyy-MM-dd format
+        if (parts[0].length() == 4) {
+            year = parts[0];
+            month = parts[1];
+            day = parts[2];
+        }
+        // Check if the input is in dd-MM-yyyy format
+        else if (parts[2].length() == 4) {
+            day = parts[0];
+            month = parts[1];
+            year = parts[2];
+        } else {
+            throw new IllegalArgumentException("Invalid date format");
+        }
 
         if (day.length() != 2 || month.length() != 2 || year.length() != 4) {
             throw new IllegalArgumentException("Invalid date format");
