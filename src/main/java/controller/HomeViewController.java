@@ -84,4 +84,45 @@ public class HomeViewController {
     }
 
 
+
+
+@FXML
+    public void goToCongeView(javafx.event.ActionEvent actionEvent) {
+        try {
+            // Charger le fichier FXML de l'interface employe-view.fxml
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/leave-management.fxml"));
+            Parent employeView = loader.load();
+
+            // Créer une nouvelle scène pour afficher employe-view.fxml
+            Scene employeScene = new Scene(employeView);
+
+            // Obtenir la scène actuelle et la remplacer par la nouvelle
+            Stage stage = (Stage) suiviCongesButton.getScene().getWindow();
+            stage.setScene(employeScene);
+            stage.setTitle("Gestion des Congés et Absences");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    public void goToThePaieView(javafx.event.ActionEvent actionEvent) {
+        try {
+            // Charger le fichier FXML de l'interface employe-view.fxml
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/payroll-management.fxml"));
+            Parent employeView = loader.load();
+
+            // Créer une nouvelle scène pour afficher employe-view.fxml
+            Scene employeScene = new Scene(employeView);
+
+            // Obtenir la scène actuelle et la remplacer par la nouvelle
+            Stage stage = (Stage) gestionPaieButton.getScene().getWindow();
+            stage.setScene(employeScene);
+            stage.setTitle("Gestion de la paie");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }
+

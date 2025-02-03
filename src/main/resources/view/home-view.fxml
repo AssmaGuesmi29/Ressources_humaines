@@ -18,7 +18,7 @@
             </Button>
 
             <!-- Suivi des Congés et Absences -->
-            <Button text="Suivi des Congés et Absences" mnemonicParsing="false" maxWidth="500">
+            <Button text="Suivi des Congés et Absences" mnemonicParsing="false" maxWidth="500" fx:id="suiviCongesButton"  onAction="#goToCongeView">
                 <graphic>
                     <ImageView fitHeight="50" fitWidth="50">
                         <image>
@@ -29,7 +29,7 @@
             </Button>
 
             <!-- Gestion de la Paie -->
-            <Button text="Gestion de la Paie" mnemonicParsing="false" maxWidth="500">
+            <Button text="Gestion de la Paie" mnemonicParsing="false" maxWidth="500" fx:id="gestionPaieButton"  onAction="#goToThePaieView">
                 <graphic>
                     <ImageView fitHeight="50" fitWidth="50">
                         <image>
