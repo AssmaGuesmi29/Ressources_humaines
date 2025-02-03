@@ -99,7 +99,6 @@ public class EmployeeController {
     public void handleEditEmployee() {
         Employee selectedEmployee = employeeTable.getSelectionModel().getSelectedItem();
         if (selectedEmployee != null) {
-            // Remplir les champs de texte avec les informations de l'employé sélectionné
             firstNameField.setText(selectedEmployee.getFirstName());
             lastNameField.setText(selectedEmployee.getLastName());
             emailField.setText(selectedEmployee.getEmail());

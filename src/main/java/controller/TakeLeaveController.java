@@ -18,6 +18,7 @@ public class TakeLeaveController {
     @FXML private CheckBox halfDayStart;
     @FXML private CheckBox halfDayEnd;
 
+
     private LeaveService leaveService = new LeaveService();
     private EmployeeService employeeService = new EmployeeService();
     private Stage stage;

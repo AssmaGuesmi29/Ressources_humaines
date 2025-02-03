@@ -11,10 +11,8 @@
        alignment="CENTER">
 
     <Label text="Ajoutez un congé" styleClass="title-label" />
-    <!-- Sélection de l'employé -->
     <Label text="Sélectionnez l'employé:" />
     <ComboBox fx:id="employeeComboBox" promptText="Choisir un employé" />
-    <!-- Sélection des dates -->
     <Label text="Date: select the desired days off" />
     <DatePicker fx:id="startDatePicker" promptText="Start Date" />
     <DatePicker fx:id="endDatePicker" promptText="End Date" />

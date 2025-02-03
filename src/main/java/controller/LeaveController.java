@@ -1,5 +1,5 @@
 package controller;
-
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 import service.LeaveService;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class LeaveController {
     @FXML private TableView<LeaveRequest> leaveTable;
@@ -20,8 +21,8 @@ public class LeaveController {
     @FXML private TableColumn<LeaveRequest, LocalDate> startDateColumn;
     @FXML private TableColumn<LeaveRequest, LocalDate> endDateColumn;
     @FXML private TableColumn<LeaveRequest, Integer> durationColumn;
-    @FXML private TableColumn<LeaveRequest, String> approverColumn;
     @FXML private TableColumn<LeaveRequest, String> statusColumn;
+    @FXML private TableColumn<LeaveRequest, Integer> remainingLeaveColumn;
 
     @FXML private Button submitButton;
     @FXML private Button approveButton;
@@ -35,11 +36,18 @@ public class LeaveController {
         startDateColumn.setCellValueFactory(new PropertyValueFactory<>("startDate"));
         endDateColumn.setCellValueFactory(new PropertyValueFactory<>("endDate"));
         durationColumn.setCellValueFactory(new PropertyValueFactory<>("duration"));
-        approverColumn.setCellValueFactory(new PropertyValueFactory<>("approver"));
         statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
+        remainingLeaveColumn.setCellValueFactory(param -> {
+            LeaveRequest leaveRequest = param.getValue();
+            int totalLeave = 30;
+            int usedLeave = leaveRequest.getDuration();
+            int remainingLeave = totalLeave - usedLeave;
 
+            return new SimpleIntegerProperty(remainingLeave).asObject();
+        });
         leaveRequests.setAll(leaveService.getAllLeaveRequests());
         leaveTable.setItems(leaveRequests);
+        refreshLeaveRequests();
     }
 
     @FXML
@@ -81,4 +89,13 @@ public class LeaveController {
             e.printStackTrace();
         }
     }
+
+    public void refreshLeaveRequests() {
+        List<LeaveRequest> newLeaveRequests = leaveService.getAllLeaveRequests();
+        leaveRequests.setAll(newLeaveRequests);
+        leaveTable.setItems(leaveRequests);
+        leaveTable.refresh();
+    }
+
+
 }

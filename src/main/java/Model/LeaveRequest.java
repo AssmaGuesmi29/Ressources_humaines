@@ -11,7 +11,7 @@ public class LeaveRequest {
     private String approver;
     private String status;
 
-    // Constructeur
+
     public LeaveRequest(int id, String employeeName, LocalDate startDate, LocalDate endDate, int duration, String approver, String status) {
         this.id = id;
         this.employeeName = employeeName;
@@ -22,7 +22,7 @@ public class LeaveRequest {
         this.status = status;
     }
 
-    // Getters et Setters
+
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
     public String getEmployeeName() { return employeeName; }
