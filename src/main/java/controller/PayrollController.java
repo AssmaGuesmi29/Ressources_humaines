@@ -1,4 +1,5 @@
 package controller;
+
 import Model.Payroll;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -21,8 +22,8 @@ public class PayrollController {
 
     @FXML
     public void initialize() {
-        employeeNameColumn.setCellValueFactory(new PropertyValueFactory<>("employeeName"));
-        grossSalaryColumn.setCellValueFactory(new PropertyValueFactory<>("grossSalary"));
+        employeeNameColumn.setCellValueFactory(cellData -> cellData.getValue().getEmployee().fullNameProperty());
+        grossSalaryColumn.setCellValueFactory(new PropertyValueFactory<>("baseSalary"));
         netSalaryColumn.setCellValueFactory(new PropertyValueFactory<>("netSalary"));
         bonusColumn.setCellValueFactory(new PropertyValueFactory<>("bonus"));
         deductionsColumn.setCellValueFactory(new PropertyValueFactory<>("deductions"));
@@ -39,11 +40,13 @@ public class PayrollController {
     public void handleGeneratePayslip() {
         Payroll selectedPayroll = payrollTable.getSelectionModel().getSelectedItem();
         if (selectedPayroll != null) {
-//            payrollService.generatePayslip(selectedPayroll);
+            payrollService.generatePayslip(selectedPayroll, "payslip_" + selectedPayroll.getId() + ".pdf");
+            showAlert("Succès", "Le bulletin de paie a été généré avec succès.");
         } else {
-            showAlert("Sélectionnez un salaire", "Veuillez sélectionner un salaire pour générer un bulletin de paie.");
+            showAlert("Erreur", "Veuillez sélectionner un salaire pour générer un bulletin de paie.");
         }
     }
+
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);

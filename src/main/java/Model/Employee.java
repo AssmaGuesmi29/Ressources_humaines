@@ -1,5 +1,8 @@
 package Model;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 import java.math.BigDecimal;
 
 public class Employee {
@@ -54,4 +57,8 @@ public class Employee {
     public void setAddress(String address) { this.address = address; }
     public BigDecimal getBaseSalary() { return baseSalary; }
     public void setBaseSalary(BigDecimal baseSalary) { this.baseSalary = baseSalary; }
+
+    public StringProperty fullNameProperty() {
+        return new SimpleStringProperty(firstName + " " + lastName);
+    }
 }

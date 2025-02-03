@@ -17,19 +17,35 @@ import org.apache.pdfbox.pdmodel.font.PDType1Font;
 
 public class PayrollService {
 
-    private final EmployeeService employeeService; // Utilisation d'un service pour gérer les employés
+    private final EmployeeService employeeService;
 
     public PayrollService() {
         this.employeeService = new EmployeeService();
+        createPayrollTableIfNotExists();
     }
 
-    /**
-     * Calcule le salaire d'un employé pour un mois et une année donnés.
-     *
-     * @param employee L'employé concerné.
-     * @param month    Le mois (ex: "Janvier").
-     * @param year     L'année (ex: 2023).
-     */
+    private void createPayrollTableIfNotExists() {
+        String sql = "CREATE TABLE IF NOT EXISTS payroll (" +
+                "id INT AUTO_INCREMENT PRIMARY KEY, " +
+                "employee_id INT, " +
+                "month VARCHAR(50), " +
+                "year INT, " +
+                "base_salary DECIMAL(10, 2), " +
+                "bonus DECIMAL(10, 2), " +
+                "deductions DECIMAL(10, 2), " +
+                "net_salary DECIMAL(10, 2), " +
+                "payment_date DATE, " +
+                "FOREIGN KEY (employee_id) REFERENCES employees(id)" +
+                ")";
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             Statement stmt = conn.createStatement()) {
+            stmt.executeUpdate(sql);
+        } catch (SQLException e) {
+            throw new RuntimeException("Erreur lors de la création de la table payroll.", e);
+        }
+    }
+
     public void calculateSalary(Employee employee, String month, int year) {
         if (employee == null || month == null || month.isEmpty() || year <= 0) {
             throw new IllegalArgumentException("Données invalides pour le calcul du salaire.");
@@ -43,11 +59,6 @@ public class PayrollService {
         savePayrollToDatabase(payroll);
     }
 
-    /**
-     * Récupère tous les bulletins de paie de la base de données.
-     *
-     * @return Une liste de bulletins de paie.
-     */
     public List<Payroll> getAllPayrolls() {
         List<Payroll> payrollList = new ArrayList<>();
         String sql = "SELECT * FROM payroll";
@@ -80,33 +91,14 @@ public class PayrollService {
         return payrollList;
     }
 
-    /**
-     * Calcule la prime d'un employé.
-     *
-     * @param employee L'employé concerné.
-     * @return La prime calculée.
-     */
     private BigDecimal calculateBonus(Employee employee) {
-        // Exemple de calcul de prime (à adapter selon les besoins)
         return BigDecimal.valueOf(500);
     }
 
-    /**
-     * Calcule les retenues (impôts, sécurité sociale, etc.) pour un employé.
-     *
-     * @param employee L'employé concerné.
-     * @return Les retenues calculées.
-     */
     private BigDecimal calculateDeductions(Employee employee) {
-        // Exemple de calcul de retenues (à adapter selon les besoins)
         return BigDecimal.valueOf(300);
     }
 
-    /**
-     * Sauvegarde un bulletin de paie dans la base de données.
-     *
-     * @param payroll Le bulletin de paie à sauvegarder.
-     */
     private void savePayrollToDatabase(Payroll payroll) {
         String sql = "INSERT INTO payroll (employee_id, month, year, base_salary, bonus, deductions, net_salary, payment_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
@@ -128,12 +120,6 @@ public class PayrollService {
         }
     }
 
-    /**
-     * Génère un bulletin de paie au format PDF.
-     *
-     * @param payroll Le bulletin de paie à générer.
-     * @param outputPath Le chemin où enregistrer le fichier PDF.
-     */
     public void generatePayslip(Payroll payroll, String outputPath) {
         if (payroll == null || outputPath == null || outputPath.isEmpty()) {
             throw new IllegalArgumentException("Données invalides pour la génération du bulletin de paie.");
