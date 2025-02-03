@@ -7,6 +7,8 @@ import Model.Employee;
 import javafx.scene.control.cell.PropertyValueFactory;
 import service.EmployeeService;
 
+import java.math.BigDecimal;
+
 public class EmployeeController {
     @FXML private TableView<Employee> employeeTable;
     @FXML private TextField firstNameField;
@@ -18,6 +20,8 @@ public class EmployeeController {
     @FXML private TextField positionField;
     @FXML private TextField departementField;
     @FXML private TextField statusField;
+    @FXML private TextField baseSalaryField;
+
 
 
 
@@ -64,15 +68,18 @@ public class EmployeeController {
         TableColumn<Employee, String> statusColumn = new TableColumn<>("Status");
         statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
 
+        TableColumn<Employee, String> baseSalaryColumn = new TableColumn<>("baseSalary");
+        baseSalaryColumn.setCellValueFactory(new PropertyValueFactory<>("baseSalary"));
+
         employeeTable.getColumns().addAll(firstNameColumn, lastNameColumn, emailColumn, positionColumn,
-                departmentColumn, hireDateColumn, phoneColumn, addressColumn, statusColumn);
+                departmentColumn, hireDateColumn, phoneColumn, addressColumn, statusColumn,baseSalaryColumn);
     }
 
 
 
     @FXML
     public void handleAddEmployee() {
-        Employee employee = new Employee(0, firstNameField.getText(), lastNameField.getText(), positionField.getText(), departementField.getText(), hireDateField.getText(), statusField.getText(), emailField.getText(), phoneField.getText(), addressField.getText());
+        Employee employee = new Employee(0, firstNameField.getText(), lastNameField.getText(), positionField.getText(), departementField.getText(), hireDateField.getText(), statusField.getText(), emailField.getText(), phoneField.getText(), addressField.getText(),new BigDecimal(baseSalaryField.getText()));
         employeeService.addEmployee(employee);
         employeeList.add(employee);
         clearFields();
@@ -106,6 +113,8 @@ public class EmployeeController {
             phoneField.setText(selectedEmployee.getPhone());
             addressField.setText(selectedEmployee.getAddress());
             statusField.setText(selectedEmployee.getStatus());
+            statusField.setText(selectedEmployee.getStatus());
+            baseSalaryField.setText(selectedEmployee.getBaseSalary().toString());
 
             addButton.setText("Update");
             addButton.setOnAction(event -> handleUpdateEmployee(selectedEmployee));
@@ -129,6 +138,7 @@ public class EmployeeController {
         employee.setPhone(phoneField.getText());
         employee.setAddress(addressField.getText());
         employee.setStatus(statusField.getText());
+        employee.setBaseSalary(new BigDecimal(baseSalaryField.getText()));
 
         employeeService.updateEmployee(employee);
 
@@ -150,6 +160,8 @@ public class EmployeeController {
         phoneField.clear();
         addressField.clear();
         statusField.clear();
+        baseSalaryField.clear();
+
     }
 
 

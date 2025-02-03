@@ -14,7 +14,6 @@ public class Payroll {
     private BigDecimal netSalary;
     private LocalDate paymentDate;
 
-
     public Payroll(int id, Employee employee, String month, int year, BigDecimal baseSalary, BigDecimal bonus, BigDecimal deductions, LocalDate paymentDate) {
         this.id = id;
         this.employee = employee;
@@ -27,6 +26,7 @@ public class Payroll {
         this.netSalary = calculateNetSalary();
     }
 
+    // Getters et Setters
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
 
@@ -42,13 +42,13 @@ public class Payroll {
     public BigDecimal getBaseSalary() { return baseSalary; }
     public void setBaseSalary(BigDecimal baseSalary) {
         this.baseSalary = baseSalary;
-        this.netSalary = calculateNetSalary(); // Recalculer le salaire net
+        this.netSalary = calculateNetSalary();
     }
 
     public BigDecimal getBonus() { return bonus; }
     public void setBonus(BigDecimal bonus) {
         this.bonus = bonus;
-        this.netSalary = calculateNetSalary(); // Recalculer le salaire net
+        this.netSalary = calculateNetSalary();
     }
 
     public BigDecimal getDeductions() { return deductions; }
