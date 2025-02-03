@@ -7,6 +7,8 @@ import Model.Employee;
 import javafx.scene.control.cell.PropertyValueFactory;
 import service.EmployeeService;
 
+import java.math.BigDecimal;
+
 public class EmployeeController {
     @FXML private TableView<Employee> employeeTable;
     @FXML private TextField firstNameField;
@@ -18,6 +20,7 @@ public class EmployeeController {
     @FXML private TextField positionField;
     @FXML private TextField departementField;
     @FXML private TextField statusField;
+    @FXML private TextField baseSalaryField;
 
     @FXML
     private TextField searchField;
@@ -65,19 +68,49 @@ public class EmployeeController {
 
         TableColumn<Employee, String> statusColumn = new TableColumn<>("Status");
         statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
+        TableColumn<Employee, BigDecimal> baseSalaryColumn = new TableColumn<>("baseSalary");
+        baseSalaryColumn.setCellValueFactory(new PropertyValueFactory<>("baseSalary"));
 
         employeeTable.getColumns().addAll(firstNameColumn, lastNameColumn, emailColumn, positionColumn,
-                departmentColumn, hireDateColumn, phoneColumn, addressColumn, statusColumn);
+                departmentColumn, hireDateColumn, phoneColumn, addressColumn, statusColumn,baseSalaryColumn);
     }
 
 
 
     @FXML
     public void handleAddEmployee() {
-        Employee employee = new Employee(0, firstNameField.getText(), lastNameField.getText(), positionField.getText(), departementField.getText(), hireDateField.getText(), statusField.getText(), emailField.getText(), phoneField.getText(), addressField.getText());
-        employeeService.addEmployee(employee);
-        employeeList.add(employee);
-        clearFields();
+
+        BigDecimal salary;
+        try {
+            salary = new BigDecimal(baseSalaryField.getText().trim());
+        } catch (NumberFormatException e) {
+            showErrorAlert("Invalid salary format. Please enter a valid number.");
+            return;
+        }
+            // Create new employee
+            Employee employee = new Employee(
+                    0, // Placeholder ID
+                    firstNameField.getText(),
+                    lastNameField.getText(),
+                    positionField.getText(),
+                    departementField.getText(),
+                    hireDateField.getText(),
+                    statusField.getText(),
+                    emailField.getText(),
+                    phoneField.getText(),
+                    addressField.getText(),
+                    salary
+            );
+
+            // Add employee via service
+            employeeService.addEmployee(employee);
+
+            // Update local list
+            employeeList.add(employee);
+
+            // Clear input fields
+            clearFields();
+
     }
     @FXML
     public void handleDeleteEmployee() {
@@ -108,6 +141,8 @@ public class EmployeeController {
             phoneField.setText(selectedEmployee.getPhone());
             addressField.setText(selectedEmployee.getAddress());
             statusField.setText(selectedEmployee.getStatus());
+            baseSalaryField.setText(selectedEmployee.getBaseSalary().toString());
+
 
             addButton.setText("Update");
             addButton.setOnAction(event -> handleUpdateEmployee(selectedEmployee));
@@ -119,6 +154,14 @@ public class EmployeeController {
             alert.showAndWait();
         }
     }
+    private void showErrorAlert(String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
 
     @FXML
     public void handleUpdateEmployee(Employee employee) {
@@ -131,6 +174,15 @@ public class EmployeeController {
         employee.setPhone(phoneField.getText());
         employee.setAddress(addressField.getText());
         employee.setStatus(statusField.getText());
+
+        try {
+            BigDecimal baseSalary = new BigDecimal(baseSalaryField.getText()); // Conversion en BigDecimal
+            employee.setBaseSalary(baseSalary);
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid base salary format");
+            // Gère l'erreur de format si nécessaire
+        }
+
 
         employeeService.updateEmployee(employee);
 

@@ -22,23 +22,24 @@ public class EmployeeService {
                 "status VARCHAR(255), " +
                 "email VARCHAR(255), " +
                 "phone VARCHAR(255), " +
-                "address TEXT" +
-                "baseSalary DECIMAL(10, 2)" +
-
+                "address TEXT, " +
+                "baseSalary DECIMAL(10, 2) " +
                 ")";
 
         try (Connection conn = DatabaseConnection.getConnection();
              Statement stmt = conn.createStatement()) {
-
             stmt.executeUpdate(createTableSQL);
-
+            System.out.println("✅ Table employees vérifiée/créée !");
         } catch (SQLException e) {
+            System.err.println("❌ Erreur lors de la création de la table : " + e.getMessage());
             e.printStackTrace();
         }
     }
 
+
+
     public void addEmployee(Employee employee) {
-        String sql = "INSERT INTO employees (firstName, lastName, position, department, hireDate, status, email, phone, address) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO employees (firstName, lastName, position, department, hireDate, status, email, phone, address, baseSalary) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
 
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -179,7 +180,7 @@ public class EmployeeService {
 
 
     public void updateEmployee(Employee employee) {
-        String sql = "UPDATE employees SET firstName = ?, lastName = ?, position = ?, department = ?, hireDate = ?, status = ?, email = ?, phone = ?, address = ? WHERE id = ?";
+        String sql = "UPDATE employees SET firstName = ?, lastName = ?, position = ?, department = ?, hireDate = ?, status = ?, baseSalary = ?, email = ?, phone = ?, address = ? WHERE id = ?";
 
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -190,16 +191,18 @@ public class EmployeeService {
             stmt.setString(4, employee.getDepartment());
             stmt.setString(5, employee.getHireDate());
             stmt.setString(6, employee.getStatus());
-            stmt.setString(7, employee.getEmail());
-            stmt.setString(8, employee.getPhone());
-            stmt.setString(9, employee.getAddress());
-            stmt.setInt(10, employee.getId());
+            stmt.setBigDecimal(7, employee.getBaseSalary());  // Correction ici
+            stmt.setString(8, employee.getEmail());
+            stmt.setString(9, employee.getPhone());
+            stmt.setString(10, employee.getAddress());
+            stmt.setInt(11, employee.getId());
 
             stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+
 
     public void deleteEmployee(int employeeId) {
         String sql = "DELETE FROM employees WHERE id = ?";
