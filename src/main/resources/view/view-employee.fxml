@@ -57,6 +57,8 @@
     </GridPane>
 
 
-
+    <Button fx:id="homeButton" text="Return to Home" onAction="#handleReturnHome"
+            style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-font-weight: bold;
+               -fx-border-radius: 5; -fx-background-radius: 5; -fx-padding: 6;"/>
 
 </VBox>

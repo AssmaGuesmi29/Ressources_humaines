@@ -1,7 +1,9 @@
 package controller;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -12,6 +14,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import service.LeaveService;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -96,6 +99,22 @@ public class LeaveController {
         leaveTable.setItems(leaveRequests);
         leaveTable.refresh();
     }
+    @FXML
+    private void handleReturnHome(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/home-view.fxml"));
+            Parent homeView = loader.load();
 
+            // Obtenir la scène en remontant via un composant existant
+            Scene currentScene = ((Node) event.getSource()).getScene();
+            Stage stage = (Stage) currentScene.getWindow();
+
+            stage.setScene(new Scene(homeView));
+            stage.show();
+        } catch (IOException e) {
+            System.out.println("Erreur lors du chargement de la page Home.");
+            e.printStackTrace();
+        }
+    }
 
 }
