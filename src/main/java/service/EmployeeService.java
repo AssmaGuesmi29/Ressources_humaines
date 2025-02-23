@@ -39,10 +39,10 @@ public class EmployeeService {
 
 
     public void addEmployee(Employee employee) {
-        String sql = "INSERT INTO employees (firstName, lastName, position, department, hireDate, status, email, phone, address, baseSalary) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
+        String sql = "INSERT INTO employees (firstName, lastName, position, department, hireDate, status, email, phone, address, baseSalary) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+             PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) { // Correction ici
 
             stmt.setString(1, employee.getFirstName());
             stmt.setString(2, employee.getLastName());
@@ -54,7 +54,7 @@ public class EmployeeService {
             } else {
                 try {
                     String formattedDate = formatDate(employee.getHireDate());
-                    stmt.setString(5, employee.getHireDate());
+                    stmt.setString(5, formattedDate); // Correction ici : Utilisation du formattedDate
                 } catch (IllegalArgumentException e) {
                     System.out.println("Invalid date format: " + employee.getHireDate());
                     stmt.setNull(5, Types.DATE);
@@ -67,9 +67,9 @@ public class EmployeeService {
             stmt.setString(9, employee.getAddress());
             stmt.setBigDecimal(10, employee.getBaseSalary());
 
-
             int i = stmt.executeUpdate();
 
+            // Récupération de la clé générée
             try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
                 if (generatedKeys.next()) {
                     employee.setId(generatedKeys.getInt(1));
@@ -80,6 +80,7 @@ public class EmployeeService {
             e.printStackTrace();
         }
     }
+
 
     private String formatDate(String date) throws IllegalArgumentException {
         String[] parts = date.split("-");
@@ -149,7 +150,8 @@ public class EmployeeService {
         String sql = "SELECT * FROM employees WHERE id = ?";
 
         try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+             PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+        ) {
 
             stmt.setInt(1, id); // Paramétrer l'ID de l'employé à récupérer
             ResultSet rs = stmt.executeQuery();

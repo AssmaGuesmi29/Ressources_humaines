@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="controller.FormationController" spacing="10"
+      style="-fx-padding: 20px;">
+
+    <Label text="Gestion des Formations" styleClass="title-label" />
+
+    <HBox spacing="10" alignment="CENTER">
+        <TextField fx:id="searchField" promptText="Rechercher par titre..." />
+        <ComboBox fx:id="filterComboBox" promptText="Filtrer par catégorie" />
+        <Button fx:id="searchButton" text="Rechercher" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold; -fx-border-radius: 5; -fx-background-radius: 5;" />
+        <Button fx:id="resetButton" text="Réinitialiser" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold; -fx-border-radius: 5; -fx-background-radius: 5;" />
+    </HBox>
+
+    <TableView fx:id="formationTable" styleClass="centered-table">
+        <TableColumn text="Titre" fx:id="titleColumn" />
+        <TableColumn text="Formateur" fx:id="trainerColumn" />
+        <TableColumn text="Date de début" fx:id="startDateColumn" />
+        <TableColumn text="Date de fin" fx:id="endDateColumn" />
+        <TableColumn text="Durée" fx:id="durationColumn" />
+        <TableColumn text="Catégorie" fx:id="categoryColumn" />
+        <TableColumn text="Lieu" fx:id="locationColumn" />
+        <TableColumn text="Statut" fx:id="statusColumn" />
+    </TableView>
+
+    <HBox spacing="10" alignment="CENTER">
+        <Button fx:id="deleteButton" text="Supprimer Formation" style="-fx-background-color: #fe0202; -fx-text-fill: white; -fx-font-weight: bold; -fx-border-radius: 5; -fx-background-radius: 5;" onAction="#handleDeleteFormation"/>
+        <Button fx:id="editButton" text="Modifier Formation" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold; -fx-border-radius: 5; -fx-background-radius: 5;" onAction="#handleEditFormation"/>
+    </HBox>
+
+    <Label text="Ajouter une Formation" styleClass="title-label" />
+    <GridPane xmlns:fx="http://javafx.com/fxml/1" hgap="10" vgap="10" alignment="CENTER">
+        <TextField fx:id="titleField" promptText="Titre" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <TextField fx:id="trainerField" promptText="Formateur" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+        <TextField fx:id="startDateField" promptText="Date de début" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+
+        <TextField fx:id="endDateField" promptText="Date de fin" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <TextField fx:id="descriptionField" promptText="Description" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+        <TextField fx:id="dureeField" promptText="Durée" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+
+
+        <TextField fx:id="costField" promptText="Cost" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+        <Button fx:id="addButton" text="Ajouter Formation" onAction="#handleAddFormation" GridPane.rowIndex="3" GridPane.columnIndex="1" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold; -fx-border-radius: 5; -fx-background-radius: 5;"/>
+    </GridPane>
+
+    <Button fx:id="homeButton" text="Retour" onAction="#handleReturnHome"
+            style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-font-weight: bold;
+               -fx-border-radius: 5; -fx-background-radius: 5; -fx-padding: 6;"/>
+</VBox>

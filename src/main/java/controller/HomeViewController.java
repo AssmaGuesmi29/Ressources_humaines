@@ -122,6 +122,25 @@ public class HomeViewController {
             e.printStackTrace();
         }
     }
+    @FXML
+    public void goToFormationView(javafx.event.ActionEvent actionEvent) {
+        try {
+            // Charger le fichier FXML de l'interface formation-view.fxml
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/formation-view.fxml"));
+            Parent formationView = loader.load();
+
+            // Créer une nouvelle scène pour afficher formation-view.fxml
+            Scene formationScene = new Scene(formationView);
+
+            // Obtenir la scène actuelle et la remplacer par la nouvelle
+            Stage stage = (Stage) gestionPaieButton.getScene().getWindow();
+            stage.setScene(formationScene);
+            stage.setTitle("Gestion des Formations");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
 
 }

@@ -51,7 +51,7 @@
             </Button>
 
             <!-- Gestion des Formations -->
-            <Button text="Gestion des Formations" mnemonicParsing="false" maxWidth="500">
+            <Button text="Gestion des Formations" mnemonicParsing="false" maxWidth="500" fx:id="gestionFormationsButton"  onAction="#goToFormationView">
                 <graphic>
                     <ImageView fitHeight="50" fitWidth="50">
                         <image>
