@@ -13,14 +13,14 @@ public class Formation {
     private String duree;
     private BigDecimal cost;
 
-    public Formation(int id, String title, String description, String startDate, String endDate, String trainer,  String duree, BigDecimal cost) {
+    public Formation(int id, String title, String startDate, String endDate, String description,  String duree, String trainer, BigDecimal cost) {
         this.id = id;
         this.title = title;
-        this.description = description;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.trainer = trainer;
+        this.description = description;
         this.duree = duree;
+        this.trainer = trainer;
         this.cost = cost;
     }
 

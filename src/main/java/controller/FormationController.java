@@ -42,8 +42,6 @@ public class FormationController {
         TableColumn<Formation, String> titleColumn = new TableColumn<>("Title");
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
 
-        TableColumn<Formation, String> descriptionColumn = new TableColumn<>("Description");
-        descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
 
         TableColumn<Formation, String> startDateColumn = new TableColumn<>("Start Date");
         startDateColumn.setCellValueFactory(new PropertyValueFactory<>("startDate"));
@@ -51,11 +49,14 @@ public class FormationController {
         TableColumn<Formation, String> endDateColumn = new TableColumn<>("End Date");
         endDateColumn.setCellValueFactory(new PropertyValueFactory<>("endDate"));
 
-        TableColumn<Formation, String> trainerColumn = new TableColumn<>("Trainer");
-        trainerColumn.setCellValueFactory(new PropertyValueFactory<>("trainer"));
+        TableColumn<Formation, String> descriptionColumn = new TableColumn<>("Description");
+        descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
 
         TableColumn<Formation, String> dureeColumn = new TableColumn<>("Duree");
         dureeColumn.setCellValueFactory(new PropertyValueFactory<>("duree"));
+
+        TableColumn<Formation, String> trainerColumn = new TableColumn<>("Trainer");
+        trainerColumn.setCellValueFactory(new PropertyValueFactory<>("trainer"));
 
         TableColumn<Formation, BigDecimal> costColumn = new TableColumn<>("Cost");
         costColumn.setCellValueFactory(new PropertyValueFactory<>("cost"));
@@ -76,11 +77,11 @@ public class FormationController {
         Formation formation = new Formation(
                 0,
                 titleField.getText(),
-                descriptionField.getText(),
                 startDateField.getText(),
                 endDateField.getText(),
-                trainerField.getText(),
+                descriptionField.getText(),
                 dureeField.getText(),
+                trainerField.getText(),
                 cost
         );
 
@@ -105,11 +106,11 @@ public class FormationController {
         Formation selectedFormation = formationTable.getSelectionModel().getSelectedItem();
         if (selectedFormation != null) {
             titleField.setText(selectedFormation.getTitle());
-            descriptionField.setText(selectedFormation.getDescription());
             startDateField.setText(selectedFormation.getStartDate());
             endDateField.setText(selectedFormation.getEndDate());
-            trainerField.setText(selectedFormation.getTrainer());
+            descriptionField.setText(selectedFormation.getDescription());
             dureeField.setText(selectedFormation.getDuree());
+            trainerField.setText(selectedFormation.getTrainer());
             costField.setText(selectedFormation.getCost().toString());
 
             addButton.setText("Update");
@@ -122,11 +123,12 @@ public class FormationController {
     @FXML
     public void handleUpdateFormation(Formation formation) {
         formation.setTitle(titleField.getText());
-        formation.setDescription(descriptionField.getText());
         formation.setStartDate(startDateField.getText());
         formation.setEndDate(endDateField.getText());
+        formation.setDescription(descriptionField.getText());
+        formation.setDuree(dureeField.getText());
         formation.setTrainer(trainerField.getText());
-        formation.setTrainer(dureeField.getText());
+
 
         try {
             BigDecimal cost = new BigDecimal(costField.getText());

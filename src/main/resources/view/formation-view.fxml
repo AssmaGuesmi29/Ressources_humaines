@@ -34,14 +34,14 @@
 
     <Label text="Ajouter une Formation" styleClass="title-label" />
     <GridPane xmlns:fx="http://javafx.com/fxml/1" hgap="10" vgap="10" alignment="CENTER">
+
         <TextField fx:id="titleField" promptText="Titre" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-        <TextField fx:id="trainerField" promptText="Formateur" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
-        <TextField fx:id="startDateField" promptText="Date de début" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+        <TextField fx:id="startDateField" promptText="Date de début" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+        <TextField fx:id="endDateField" promptText="Date de fin" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
 
-        <TextField fx:id="endDateField" promptText="Date de fin" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-        <TextField fx:id="descriptionField" promptText="Description" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
-        <TextField fx:id="dureeField" promptText="Durée" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
-
+        <TextField fx:id="descriptionField" promptText="Description" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <TextField fx:id="dureeField" promptText="Durée" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+        <TextField fx:id="trainerField" promptText="Formateur" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
 
         <TextField fx:id="costField" promptText="Cost" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
 
